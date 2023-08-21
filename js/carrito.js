@@ -1,4 +1,4 @@
-// Selección de elementos del DOM
+// Selector para el DOM
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
 const contenedorCarritoAcciones = document.querySelector("#carrito-acciones");
@@ -6,7 +6,7 @@ const contenedorCarritoComprado = document.querySelector("#carrito-comprado");
 const contenedorTotal = document.querySelector("#total");
 const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
 const botonComprar = document.querySelector(".carrito-acciones-comprar");
-// Variable para almacenar los productos en el carrito
+// Guardar los productos en el carrito
 let productosEnCarrito =
   JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
 
@@ -58,7 +58,7 @@ function cargarProductosCarrito() {
   // Sumatoria total de todos los productos
   actualizarTotal();
 }
-// Función para eliminar un producto del carrito
+// Para que el usuario sepa que se eliminó un producto
 function eliminarDelCarrito(e) {
   Toastify({
     text: "Producto eliminado!",

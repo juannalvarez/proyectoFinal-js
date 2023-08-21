@@ -17,7 +17,7 @@ const contador = document.querySelector("#contador");
 let productosEnCarrito =
   JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
 
-// Función para cargar los productos en el contenedor de productos
+
 function cargarProductos(productosElegidos) {
   contenedorProductos.innerHTML = productosElegidos
     .map(
@@ -54,13 +54,12 @@ botonesCategorias.forEach((boton) => {
             (producto) => producto.categoria.id === categoriaSeleccionada
           );
 
-    // Para ir cambiando los titulos
+    // Para ir cambiando los titulos principales
     tituloPrincipal.innerText =
       categoriaSeleccionada === "Todos"
         ? "Todos los productos"
         : e.currentTarget.innerText;
 
-    // Cargar los productos filtrados en el contenedor de productos
     cargarProductos(productosFiltrados);
   });
 });
@@ -72,7 +71,7 @@ function actualizarBotonesAgregar() {
     .forEach((boton) => boton.addEventListener("click", agregarAlCarrito));
 }
 
-// Función para agregar un producto al carrito
+// Para que el usuario sepa que se agregó un producto
 function agregarAlCarrito(e) {
   Toastify({
     text: "Producto agregado",
@@ -95,19 +94,17 @@ function agregarAlCarrito(e) {
   const productoAgregado = productos.find(
     (producto) => producto.id === idBoton
   );
-
+    // Para agregar varios vinos de un mismo producto
   if (productosEnCarrito.some((producto) => producto.id === idBoton)) {
-    // Si el producto ya está en el carrito, aumentar la cantidad
     productosEnCarrito.forEach((producto) => {
       if (producto.id === idBoton) producto.cantidad++;
     });
   } else {
-    // Si es un producto nuevo en el carrito, agregarlo con cantidad 1
     productoAgregado.cantidad = 1;
     productosEnCarrito.push(productoAgregado);
   }
 
-  // Actualizar el número de productos
+  // Activo la funcion para actualziar el contador 
   actualizarcontador();
 
   // Guardar los productos en el carrito
@@ -117,7 +114,7 @@ function agregarAlCarrito(e) {
   );
 }
 
-// Para actualizar numero de productos
+// Actualizar contador de productos
 function actualizarcontador() {
   const nuevoContador = productosEnCarrito.reduce(
     (acc, producto) => acc + producto.cantidad,
